@@ -7,6 +7,7 @@ using System;
 /// <summary> A modular and easily customisable Unity MonoBehaviour for handling swipe and pinch motions on mobile. </summary>
 public class PanAndZoom : MonoBehaviour
 {
+    public static PanAndZoom instance;
 
     /// <summary> Called as soon as the player touches the screen. The argument is the screen position. </summary>
     public event Action<Vector2> onStartTouch;
@@ -63,6 +64,11 @@ public class PanAndZoom : MonoBehaviour
 
     /// <summary> The point of contact if it exists in Screen space. </summary>
     public Vector2 touchPosition { get { return touch0LastPosition; } }
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     void Start()
     {
