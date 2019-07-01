@@ -547,6 +547,7 @@ GameObject:
   - component: {fileID: 656}
   - component: {fileID: 657}
   - component: {fileID: 651}
+  - component: {fileID: 6229377165075804192}
   m_Layer: 9
   m_Name: Boat
   m_TagString: Untagged
@@ -715,7 +716,7 @@ MonoBehaviour:
   - {fileID: 651}
   - {fileID: 0}
   viewIdField: 0
-  InstantiationId: 0
+  InstantiationId: 1
   isRuntimeInstantiated: 0
 --- !u!114 &657
 MonoBehaviour:
@@ -739,7 +740,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 131}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 64179f3720bbfe947b7724caa67b7c1d, type: 3}
   m_Name: 
@@ -748,6 +749,23 @@ MonoBehaviour:
   m_SynchronizeAngularVelocity: 0
   m_TeleportEnabled: 0
   m_TeleportIfDistanceGreaterThan: 3
+--- !u!114 &6229377165075804192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd08475b23aa548b7b9d28397d430b32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distance: 25.69
+  height: 10.16
+  heightSmoothLag: 0.3
+  centerOffset: {x: 0, y: 14.58, z: 0}
+  followOnStart: 0
 --- !u!1 &132
 GameObject:
   m_ObjectHideFlags: 0
@@ -929,15 +947,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 135402, guid: f997b4da461b427448692385e302007f, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 187010, guid: f997b4da461b427448692385e302007f, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
     - target: {fileID: 198810, guid: f997b4da461b427448692385e302007f, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 135402, guid: f997b4da461b427448692385e302007f, type: 3}
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
@@ -953,11 +967,15 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
-    - target: {fileID: 194672, guid: f997b4da461b427448692385e302007f, type: 3}
+    - target: {fileID: 169288, guid: f997b4da461b427448692385e302007f, type: 3}
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
-    - target: {fileID: 169288, guid: f997b4da461b427448692385e302007f, type: 3}
+    - target: {fileID: 167162, guid: f997b4da461b427448692385e302007f, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 187010, guid: f997b4da461b427448692385e302007f, type: 3}
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
@@ -965,7 +983,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
-    - target: {fileID: 167162, guid: f997b4da461b427448692385e302007f, type: 3}
+    - target: {fileID: 194672, guid: f997b4da461b427448692385e302007f, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 136884, guid: f997b4da461b427448692385e302007f, type: 3}
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
@@ -974,10 +996,6 @@ PrefabInstance:
       value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 194568, guid: f997b4da461b427448692385e302007f, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 136884, guid: f997b4da461b427448692385e302007f, type: 3}
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
