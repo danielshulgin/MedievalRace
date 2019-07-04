@@ -63,18 +63,30 @@ namespace Photon.Pun.Demo.PunBasics
 
 				Debug.LogError("<Color=Red><b>Missing</b></Color> playerPrefab Reference. Please set it up in GameObject 'Game Manager'", this);
 			} else {
-
+                int i = 0;
+                foreach (var p in PhotonNetwork.PlayerList) {
+                    print(p.NickName + " " + i + " " + PhotonNetwork.LocalPlayer.NickName);
+                    if (p.NickName == PhotonNetwork.LocalPlayer.NickName)
+                        break;
+                }   
 
 				if (BoatEngine.LocalPlayerInstance==null)
 				{
 				    Debug.LogFormat("We are Instantiating LocalPlayer from {0}", SceneManagerHelper.ActiveSceneName);
 
-					// we're in a room. spawn a character for the local player. it gets synced by using PhotonNetwork.Instantiate
-					PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(0f,5f,0f), Quaternion.identity, 0);
+                    // we're in a room. spawn a character for the local player. it gets synced by using PhotonNetwork.Instantiate
+
+                    
+
+					PhotonNetwork.Instantiate(this.playerPrefab.name, SpawnPos.list[i].transform.position, SpawnPos.list[i].transform.rotation, 0);
 
 				}else{
 
-					Debug.LogFormat("Ignoring scene load for {0}", SceneManagerHelper.ActiveSceneName);
+                    BoatEngine.LocalPlayerInstance.transform.position = SpawnPos.list[i].transform.position;
+                    BoatEngine.LocalPlayerInstance.transform.rotation = SpawnPos.list[i].transform.rotation;
+
+
+                    Debug.LogFormat("Ignoring scene load for {0}", SceneManagerHelper.ActiveSceneName);
 				}
 
 
@@ -135,6 +147,7 @@ namespace Photon.Pun.Demo.PunBasics
 		/// </summary>
 		public override void OnLeftRoom()
 		{
+
 			SceneManager.LoadScene("PunBasics-Launcher");
 		}
 
@@ -144,6 +157,8 @@ namespace Photon.Pun.Demo.PunBasics
 
 		public void LeaveRoom()
 		{
+            //print(PhotonNetwork.LocalPlayer.UserId);
+            PhotonNetwork.DestroyAll();//.DestroyPlayerObjects(PhotonNetwork.LocalPlayer);
 			PhotonNetwork.LeaveRoom();
 		}
 
