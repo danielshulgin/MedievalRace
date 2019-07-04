@@ -68,6 +68,7 @@ public class PanAndZoom : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        DontDestroyOnLoad(this.gameObject);
     }
 
     void Start()
