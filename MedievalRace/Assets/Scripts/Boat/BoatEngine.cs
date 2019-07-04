@@ -12,10 +12,12 @@ public class BoatEngine : MonoBehaviourPunCallbacks, IPunObservable
 
     public float speed = 1f;
     public float controlForce = 100f;
-    public float maxVelocity = 10f;
+    public float maxVelocity = 0.6f;
 
     [Tooltip("The local player instance. Use this to know if the local player is represented in the Scene")]
     public static GameObject LocalPlayerInstance;
+    [SerializeField]
+    private float maxAngularVelocity = 20f;
 
     private void Awake()
     {
@@ -76,7 +78,12 @@ public class BoatEngine : MonoBehaviourPunCallbacks, IPunObservable
     public void Control(Vector2 direction)
     {
         Vector3 recalculatedDirection = new Vector3(0f, direction.x * controlForce, 0f) * Time.deltaTime;
-        gameObject.GetComponent<Rigidbody>().AddTorque(recalculatedDirection);
+        Rigidbody rb = gameObject.GetComponent<Rigidbody>();
+        rb.AddTorque(recalculatedDirection);
+        if (rb.angularVelocity.magnitude > maxAngularVelocity)
+        {
+            rb.angularVelocity = rb.angularVelocity.normalized * maxAngularVelocity;
+        }
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
