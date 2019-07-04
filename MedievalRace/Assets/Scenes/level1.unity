@@ -1655,6 +1655,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: FLOWCONTROLLER
       objectReference: {fileID: 0}
+    - target: {fileID: 2078820307476575023, guid: 6a222b331409d9448adfe2ddd288555b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2078820307476575017, guid: 6a222b331409d9448adfe2ddd288555b,
         type: 3}
       propertyPath: m_LocalPosition.x

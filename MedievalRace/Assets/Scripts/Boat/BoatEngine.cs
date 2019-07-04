@@ -21,6 +21,8 @@ public class BoatEngine : MonoBehaviourPunCallbacks, IPunObservable
 
     private void Awake()
     {
+        panAndZoom = PanAndZoom.instance;
+
         if (BoatEngine.LocalPlayerInstance != null && photonView.IsMine)
         {
             PhotonNetwork.Destroy(this.gameObject);
