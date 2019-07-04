@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
+using UnityEngine.UI;
 
 public class Launcher : MonoBehaviourPunCallbacks
 {
@@ -20,6 +21,9 @@ public class Launcher : MonoBehaviourPunCallbacks
     [Tooltip("The UI Label to inform the user that the connection is in progress")]
     [SerializeField]
     private GameObject progressLabel;
+
+    [SerializeField]
+    public Text loadLevelName;
 
     #region Private Fields
 
@@ -147,7 +151,7 @@ public class Launcher : MonoBehaviourPunCallbacks
 
             // #Critical
             // Load the Room Level.
-            PhotonNetwork.LoadLevel("level1");
+            PhotonNetwork.LoadLevel(loadLevelName.text);
             //PhotonNetwork.LoadLevel("Room for 1");// level1");
         }
     }

@@ -15,26 +15,37 @@ public class BoatEngine : MonoBehaviourPunCallbacks, IPunObservable
     public float maxVelocity = 0.6f;
 
     [Tooltip("The local player instance. Use this to know if the local player is represented in the Scene")]
-    public static GameObject LocalPlayerInstance;
+    public static GameObject LocalPlayerInstance = null;
     [SerializeField]
     private float maxAngularVelocity = 20f;
 
     private void Awake()
     {
+        panAndZoom = PanAndZoom.instance;
+
+        if (BoatEngine.LocalPlayerInstance != null && photonView.IsMine)
+        {
+            if (!PhotonNetwork.IsConnected)
+            {
+                PhotonNetwork.Destroy(this.gameObject);
+                return;
+            }
+        }
+
         // #Important
         // used in GameManager.cs: we keep track of the localPlayer instance to prevent instantiation when levels are synchronized
-        if (photonView.IsMine || PhotonNetwork.IsConnected == false)
+        if (photonView.IsMine)
         {
             BoatEngine.LocalPlayerInstance = this.gameObject;
         }
         // #Critical
         // we flag as don't destroy on load so that instance survives level synchronization, thus giving a seamless experience when levels load.
-        DontDestroyOnLoad(this.gameObject);
+        //DontDestroyOnLoad(this.gameObject);
     }
 
     void Start()
     {
-        if (photonView.IsMine == true || PhotonNetwork.IsConnected == false)
+        if (photonView.IsMine == true && LocalPlayerInstance == this.gameObject)
         {
             panAndZoom = PanAndZoom.instance;
 
@@ -58,12 +69,10 @@ public class BoatEngine : MonoBehaviourPunCallbacks, IPunObservable
 
     private void FixedUpdate()
     {
-        if (photonView.IsMine == false && PhotonNetwork.IsConnected != false)
+        if (photonView.IsMine == true && LocalPlayerInstance == this.gameObject)
         {
-            return;
-        }
-
-        Move();
+            Move();
+        }        
     }
 
     public void Move()
@@ -83,6 +92,18 @@ public class BoatEngine : MonoBehaviourPunCallbacks, IPunObservable
         if (rb.angularVelocity.magnitude > maxAngularVelocity)
         {
             rb.angularVelocity = rb.angularVelocity.normalized * maxAngularVelocity;
+        }
+    }
+
+    public void OnDestroy()
+    {
+        panAndZoom.onSwipe -= Control;
+
+        if (BoatEngine.LocalPlayerInstance == this.gameObject && photonView.IsMine)
+        {
+            BoatEngine.LocalPlayerInstance = null;
+            //panAndZoom.onSwipe = null;
+            
         }
     }
 
