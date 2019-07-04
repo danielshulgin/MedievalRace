@@ -116,7 +116,9 @@ public class CannonManager : MonoBehaviourPunCallbacks
             upPositions[i] = up.gameObject.transform.position +
                 Quaternion.Euler(direction) * new Vector3(i, Mathf.Sin(i), 0f);
         }
+        up.positionCount = linePointCount;
         up.SetPositions(upPositions);
+        down.positionCount = linePointCount;
         down.SetPositions(upPositions);
     }
 
