@@ -652,6 +652,12 @@ MonoBehaviour:
   - {fileID: 129}
   - {fileID: 128}
   panAndZoom: {fileID: 0}
+  lineRendererUpRight: {fileID: 0}
+  lineRendererUpLeft: {fileID: 0}
+  lineRendererDownRight: {fileID: 0}
+  lineRendererDownLeft: {fileID: 0}
+  maxFireAngle: 45
+  minAngle: -45
   cannonballPref: {fileID: 6680876875718224692, guid: fbb11f09e53b1374ba706c90326c8ca9,
     type: 3}
 --- !u!114 &727
