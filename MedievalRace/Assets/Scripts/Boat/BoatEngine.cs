@@ -101,9 +101,13 @@ public class BoatEngine : MonoBehaviourPunCallbacks, IPunObservable
 
     public void OnDestroy()
     {
-        if (BoatEngine.LocalPlayerInstance == this.gameObject && photonView.IsMine)
+        try
         {
             panAndZoom.onSwipe -= Control;
+        } catch { }
+
+        if (BoatEngine.LocalPlayerInstance == this.gameObject && photonView.IsMine)
+        {            
             BoatEngine.LocalPlayerInstance = null;
         }
     }
