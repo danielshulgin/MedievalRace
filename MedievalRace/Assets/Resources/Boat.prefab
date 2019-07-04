@@ -538,7 +538,6 @@ GameObject:
   m_Component:
   - component: {fileID: 314}
   - component: {fileID: 712}
-  - component: {fileID: 664}
   - component: {fileID: 672}
   - component: {fileID: 709}
   - component: {fileID: 711}
@@ -549,6 +548,7 @@ GameObject:
   - component: {fileID: 708}
   - component: {fileID: 716}
   - component: {fileID: 686}
+  - component: {fileID: 613}
   m_Layer: 9
   m_Name: Boat
   m_TagString: Untagged
@@ -592,22 +592,6 @@ MonoBehaviour:
   controlForce: 1500
   maxVelocity: 20
   maxAngularVelocity: 20
---- !u!54 &613
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 112}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 2
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 84
-  m_CollisionDetection: 0
 --- !u!65 &672
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -723,9 +707,9 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   ObservedComponents:
-  - {fileID: 657}
-  - {fileID: 651}
-  viewIdField: 0
+  - {fileID: 714}
+  - {fileID: 708}
+  viewIdField: 1
   InstantiationId: 1
   isRuntimeInstantiated: 0
 --- !u!114 &714
@@ -790,6 +774,22 @@ CapsuleCollider:
   m_Height: 14.27
   m_Direction: 2
   m_Center: {x: 0, y: 3, z: -1}
+--- !u!54 &613
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 112}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 2
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 84
+  m_CollisionDetection: 0
 --- !u!1 &113
 GameObject:
   m_ObjectHideFlags: 0
@@ -1841,6 +1841,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 314}
     m_Modifications:
+    - target: {fileID: 176094, guid: f997b4da461b427448692385e302007f, type: 3}
+      propertyPath: m_Name
+      value: SM_Veh_Boat_Warship_01_Hull
+      objectReference: {fileID: 0}
+    - target: {fileID: 176094, guid: f997b4da461b427448692385e302007f, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 176094, guid: f997b4da461b427448692385e302007f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 478598, guid: f997b4da461b427448692385e302007f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.1393145
@@ -1883,18 +1895,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 478598, guid: f997b4da461b427448692385e302007f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 176094, guid: f997b4da461b427448692385e302007f, type: 3}
-      propertyPath: m_Name
-      value: SM_Veh_Boat_Warship_01_Hull
-      objectReference: {fileID: 0}
-    - target: {fileID: 176094, guid: f997b4da461b427448692385e302007f, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 176094, guid: f997b4da461b427448692385e302007f, type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 198810, guid: f997b4da461b427448692385e302007f, type: 3}
