@@ -588,6 +588,7 @@ MonoBehaviour:
   speed: 1000
   controlForce: 1500
   maxVelocity: 20
+  maxAngularVelocity: 20
 --- !u!54 &613
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -715,7 +716,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 657}
   - {fileID: 651}
-  viewIdField: 1
+  viewIdField: 0
   InstantiationId: 1
   isRuntimeInstantiated: 0
 --- !u!114 &657
@@ -958,18 +959,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 312}
     m_Modifications:
-    - target: {fileID: 176094, guid: f997b4da461b427448692385e302007f, type: 3}
-      propertyPath: m_Name
-      value: SM_Veh_Boat_Warship_01_Hull
-      objectReference: {fileID: 0}
-    - target: {fileID: 176094, guid: f997b4da461b427448692385e302007f, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 176094, guid: f997b4da461b427448692385e302007f, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 478598, guid: f997b4da461b427448692385e302007f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.1393145
@@ -1012,6 +1001,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 478598, guid: f997b4da461b427448692385e302007f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 176094, guid: f997b4da461b427448692385e302007f, type: 3}
+      propertyPath: m_Name
+      value: SM_Veh_Boat_Warship_01_Hull
+      objectReference: {fileID: 0}
+    - target: {fileID: 176094, guid: f997b4da461b427448692385e302007f, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 176094, guid: f997b4da461b427448692385e302007f, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 198810, guid: f997b4da461b427448692385e302007f, type: 3}
