@@ -77,21 +77,17 @@ public class CameraWork : MonoBehaviour
         {
             followOnStart = false;
             this.enabled = false;
-            isFollowing = false;
             return;
         }
 
-            // Start following the target if wanted.
-            if (followOnStart)
-			{
-				OnStartFollowing();
-			}
+        // Start following the target if wanted.
+        if (followOnStart)
+		{
+			OnStartFollowing();
+		}
 
 		}
 
-		/// <summary>
-		/// MonoBehaviour method called after all Update functions have been called. This is useful to order script execution. For example a follow camera should always be implemented in LateUpdate because it tracks objects that might have moved inside Update.
-		/// </summary>
 		void LateUpdate()
 		{
             if (photonView.IsMine == false)
