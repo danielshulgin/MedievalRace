@@ -73,7 +73,7 @@ public class BoatEngine : MonoBehaviourPunCallbacks, IPunObservable
 
     private void FixedUpdate()
     {
-        if (photonView.IsMine == true && LocalPlayerInstance == this.gameObject)
+        if (photonView.IsMine == true && BoatEngine.LocalPlayerInstance == this.gameObject)
         {
             Move();
         }        

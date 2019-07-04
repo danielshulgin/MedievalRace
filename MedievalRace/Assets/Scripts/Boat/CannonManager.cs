@@ -72,9 +72,8 @@ public class CannonManager : MonoBehaviourPunCallbacks
 
     private void OnDestroy()
     {
-        if (photonView.IsMine == true)
-            //if (panAndZoom.onTap != null)
-             panAndZoom.onTap -= Fire;
+        if (photonView.IsMine == true && BoatEngine.LocalPlayerInstance == this.gameObject)
+                panAndZoom.onTap -= Fire;
     }
 
     public void Fire(Vector2 position)
