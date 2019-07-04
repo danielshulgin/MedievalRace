@@ -63,7 +63,7 @@ public class Launcher : MonoBehaviourPunCallbacks
     /// </summary>
     void Start()
     {
-        PhotonNetwork.OfflineMode = true;
+        PhotonNetwork.OfflineMode = playOffline;
         progressLabel.SetActive(false);
         controlPanel.SetActive(true);
         //Connect();
