@@ -14,22 +14,14 @@ public class CannonManager : MonoBehaviourPunCallbacks
     public PanAndZoom panAndZoom;
 
     public GameObject cannonballPref;
-
-    private void Awake()
+    
+    void Start()
     {
-        if (photonView.IsMine == false && PhotonNetwork.IsConnected == true)
+        if (photonView.IsMine == false || PhotonNetwork.IsConnected == false)
         {
             return;
         }
         panAndZoom = PanAndZoom.instance;
-    }
-
-    void Start()
-    {
-        if (photonView.IsMine == false && PhotonNetwork.IsConnected == true)
-        {
-            return;
-        }
         panAndZoom.onTap += Fire;
     }
 

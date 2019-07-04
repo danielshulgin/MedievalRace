@@ -21,20 +21,21 @@ public class BoatEngine : MonoBehaviourPunCallbacks, IPunObservable
     {
         // #Important
         // used in GameManager.cs: we keep track of the localPlayer instance to prevent instantiation when levels are synchronized
-        if (photonView.IsMine)
+        if (photonView.IsMine || PhotonNetwork.IsConnected == false)
         {
             BoatEngine.LocalPlayerInstance = this.gameObject;
         }
         // #Critical
         // we flag as don't destroy on load so that instance survives level synchronization, thus giving a seamless experience when levels load.
         DontDestroyOnLoad(this.gameObject);
-        panAndZoom = PanAndZoom.instance;
     }
 
     void Start()
     {
-        if (photonView.IsMine == true)
+        if (photonView.IsMine == true || PhotonNetwork.IsConnected == false)
         {
+            panAndZoom = PanAndZoom.instance;
+
             panAndZoom.onSwipe += Control;
             CameraWork _cameraWork = this.gameObject.GetComponent<CameraWork>();
 
@@ -55,7 +56,7 @@ public class BoatEngine : MonoBehaviourPunCallbacks, IPunObservable
 
     private void FixedUpdate()
     {
-        if (photonView.IsMine == false && PhotonNetwork.IsConnected == true)
+        if (photonView.IsMine == false && PhotonNetwork.IsConnected != false)
         {
             return;
         }
