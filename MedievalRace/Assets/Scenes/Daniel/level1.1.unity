@@ -15165,6 +15165,10 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 728, guid: 759fafbf95cc0a2458a1614592d0bfec, type: 3}
+      propertyPath: speed
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 729, guid: 759fafbf95cc0a2458a1614592d0bfec, type: 3}
       propertyPath: viewIdField
       value: 1

@@ -14,6 +14,7 @@ public enum Side
 public class CannonManager : MonoBehaviourPunCallbacks
 {
     // Start is called before the first frame update
+    public Vector3 dir = Vector3.forward;
     public List<GameObject> leftCannons;
     public List<GameObject> rightCannons;
     public PanAndZoom panAndZoom;
@@ -35,7 +36,7 @@ public class CannonManager : MonoBehaviourPunCallbacks
     private float maxFireAngle = 45;
     [Tooltip("contr clockwise, from OX")]
     [SerializeField]
-    private float minAngle = - 45;
+    private float minAngle = -45;
     private Vector2 UR;
     private Vector2 DR;
     private Vector2 UL;
@@ -67,13 +68,7 @@ public class CannonManager : MonoBehaviourPunCallbacks
 
     private void Update()
     {
-        ChangeTrajectory(Side.Right, Vector3.right);
-    }
-
-    private void OnDestroy()
-    {
-        if (photonView.IsMine == true)
-            panAndZoom.onTap -= Fire;
+        ChangeTrajectory(Side.Right, dir);
     }
 
     public void Fire(Vector2 position)
@@ -123,10 +118,42 @@ public class CannonManager : MonoBehaviourPunCallbacks
     {
         if (side == Side.Right)
         {
+            Vector2 UpdatedUR = gameObject.transform.rotation * UR;
+            Vector2 UpdatedDR = gameObject.transform.rotation * DR;
+            if (direction.z > 0)
+            {
+                if (direction.x < UpdatedUR.x)
+                {
+                    direction = new Vector3(UpdatedUR.x, direction.y, UpdatedUR.y);
+                }
+            }
+            else
+            {
+                if (direction.x < UpdatedUR.x)
+                {
+                    direction = new Vector3(UpdatedDR.x, direction.y, UpdatedDR.y);
+                }
+            }
             ChangeTrajectory(lineRendererUpRight, lineRendererDownRight, direction);
         }
         else
         {
+            Vector2 UpdatedUL = gameObject.transform.rotation * UL;
+            Vector2 UpdatedDL = gameObject.transform.rotation * DL;
+            if (direction.z > 0)
+            {
+                if (direction.x > UpdatedUL.x)
+                {
+                    direction = new Vector3(UpdatedUL.x, direction.y, UpdatedUL.y);
+                }
+            }
+            else
+            {
+                if (direction.x > UpdatedUL.x)
+                {
+                    direction = new Vector3(UpdatedDL.x, direction.y, UpdatedDL.y);
+                }
+            }
             ChangeTrajectory(lineRendererUpLeft, lineRendererDownLeft, direction);
         }
     }
@@ -135,7 +162,9 @@ public class CannonManager : MonoBehaviourPunCallbacks
     {
         Vector3[] upPositions = new Vector3[linePointCount];
         Vector3[] downPositions = new Vector3[linePointCount];
-        Quaternion quternionDirection = Quaternion.Euler(direction);
+        Quaternion quternionDirection = Quaternion.LookRotation(direction);
+        Vector3 k = quternionDirection.eulerAngles;
+        //Debug.Log(quternionDirection.eulerAngles);
         for (int i = 0; i < linePointCount; i++)
         {
             upPositions[i] = up.gameObject.transform.position +
