@@ -9,11 +9,12 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using UnityEngine;
+using Photon.Pun;
 
-	/// <summary>
-	/// Camera work. Follow a target
-	/// </summary>
-	public class CameraWork : MonoBehaviour
+/// <summary>
+/// Camera work. Follow a target
+/// </summary>
+public class CameraWork : MonoBehaviour
 	{
         #region Private Fields
 
@@ -49,28 +50,49 @@ using UnityEngine;
 		// Represents the position we are trying to reach using SmoothDamp()
 		private float targetHeight = 100000.0f;
 
-        #endregion
+    #endregion
 
-        #region MonoBehaviour Callbacks
+    #region MonoBehaviour Callbacks
 
-        /// <summary>
-        /// MonoBehaviour method called on GameObject by Unity during initialization phase
-        /// </summary>
+    PhotonView photonView;
+
+    private void Awake()
+    {
+        photonView = GetComponent<PhotonView>();
+    }
+    
+
         void Start()
 		{
-			// Start following the target if wanted.
-			if (followOnStart)
-			{
-				OnStartFollowing();
-			}
+         
+
+        print(photonView.IsMine + " " + (BoatEngine.LocalPlayerInstance == this.gameObject));
+        var boatEngine = GetComponent<BoatEngine>();
+
+        if (photonView.IsMine && BoatEngine.LocalPlayerInstance == this.gameObject)
+        {
+            followOnStart = true;
+
+        } else
+        {
+            followOnStart = false;
+            this.enabled = false;
+            return;
+        }
+
+        // Start following the target if wanted.
+        if (followOnStart)
+		{
+			OnStartFollowing();
+		}
 
 		}
 
-		/// <summary>
-		/// MonoBehaviour method called after all Update functions have been called. This is useful to order script execution. For example a follow camera should always be implemented in LateUpdate because it tracks objects that might have moved inside Update.
-		/// </summary>
 		void LateUpdate()
 		{
+            if (photonView.IsMine == false)
+                return;
+
 			// The transform target may not destroy on level load, 
 			// so we need to cover corner cases where the Main Camera is different everytime we load a new scene, and reconnect when that happens
 			if (cameraTransform == null && isFollowing)
