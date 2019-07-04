@@ -23,6 +23,10 @@ public class BoatEngine : MonoBehaviourPunCallbacks, IPunObservable
     {
         panAndZoom = PanAndZoom.instance;
 
+        var audios = GetComponentsInChildren<AudioSource>(true);
+        foreach (var a in audios)
+            a.enabled = true;
+
         if (BoatEngine.LocalPlayerInstance != null && photonView.IsMine)
         {
             if (!PhotonNetwork.IsConnected)

@@ -1619,10 +1619,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boat
       objectReference: {fileID: 0}
-    - target: {fileID: 112, guid: 759fafbf95cc0a2458a1614592d0bfec, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 713, guid: 759fafbf95cc0a2458a1614592d0bfec, type: 3}
       propertyPath: viewIdField
       value: 1
