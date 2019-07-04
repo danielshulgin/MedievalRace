@@ -50,7 +50,7 @@ namespace Com.MyCompany.MyGame
                     Debug.LogFormat("We are Instantiating LocalPlayer from {0}", SceneManagerHelper.ActiveSceneName);
                     // we're in a room. spawn a character for the local player. it gets synced by using PhotonNetwork.Instantiate
                     print(PhotonNetwork.LocalPlayer.NickName);// .player.ID);
-                    print(PhotonNetwork.PlayerList[0]);
+                   // print(PhotonNetwork.PlayerList[0]);
 
                     int id = 0;
                     foreach (var p in PhotonNetwork.PlayerList) {
