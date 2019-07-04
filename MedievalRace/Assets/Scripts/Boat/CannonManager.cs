@@ -70,6 +70,12 @@ public class CannonManager : MonoBehaviourPunCallbacks
         ChangeTrajectory(Side.Right, Vector3.right);
     }
 
+    private void OnDestroy()
+    {
+        if (photonView.IsMine == true)
+            panAndZoom.onTap -= Fire;
+    }
+
     public void Fire(Vector2 position)
     {
         if (position.x < Camera.main.pixelWidth / 2)

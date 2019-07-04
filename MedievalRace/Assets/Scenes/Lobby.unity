@@ -902,7 +902,7 @@ PrefabInstance:
     - target: {fileID: 2078820307476575023, guid: 6a222b331409d9448adfe2ddd288555b,
         type: 3}
       propertyPath: m_Name
-      value: FLOWCONTROLLER
+      value: PANANDZOOM
       objectReference: {fileID: 0}
     - target: {fileID: 2078820307476575017, guid: 6a222b331409d9448adfe2ddd288555b,
         type: 3}
@@ -957,6 +957,11 @@ PrefabInstance:
     - target: {fileID: 2078820307476575017, guid: 6a222b331409d9448adfe2ddd288555b,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2078820307476575016, guid: 6a222b331409d9448adfe2ddd288555b,
+        type: 3}
+      propertyPath: controlCamera
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
