@@ -25,8 +25,11 @@ public class BoatEngine : MonoBehaviourPunCallbacks, IPunObservable
 
         if (BoatEngine.LocalPlayerInstance != null && photonView.IsMine)
         {
-            PhotonNetwork.Destroy(this.gameObject);
-            return;
+            if (!PhotonNetwork.IsConnected)
+            {
+                PhotonNetwork.Destroy(this.gameObject);
+                return;
+            }
         }
 
         // #Important
