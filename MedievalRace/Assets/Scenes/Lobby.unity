@@ -698,7 +698,7 @@ MonoBehaviour:
   maxPlayersPerRoom: 4
   controlPanel: {fileID: 371074236}
   progressLabel: {fileID: 404742152}
-  loadLevelName: {fileID: 0}
+  loadLevelName: {fileID: 1153692611}
 --- !u!4 &601069233
 Transform:
   m_ObjectHideFlags: 0
