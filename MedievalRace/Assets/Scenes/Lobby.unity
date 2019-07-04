@@ -699,6 +699,7 @@ MonoBehaviour:
   controlPanel: {fileID: 371074236}
   progressLabel: {fileID: 404742152}
   loadLevelName: {fileID: 1153692611}
+  playOffline: 0
 --- !u!4 &601069233
 Transform:
   m_ObjectHideFlags: 0
@@ -1618,6 +1619,10 @@ PrefabInstance:
     - target: {fileID: 112, guid: 759fafbf95cc0a2458a1614592d0bfec, type: 3}
       propertyPath: m_Name
       value: Boat
+      objectReference: {fileID: 0}
+    - target: {fileID: 112, guid: 759fafbf95cc0a2458a1614592d0bfec, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 713, guid: 759fafbf95cc0a2458a1614592d0bfec, type: 3}
       propertyPath: viewIdField

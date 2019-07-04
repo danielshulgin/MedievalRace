@@ -25,6 +25,8 @@ public class Launcher : MonoBehaviourPunCallbacks
     [SerializeField]
     public Text loadLevelName;
 
+    public bool playOffline = false;
+
     #region Private Fields
 
 
@@ -61,6 +63,7 @@ public class Launcher : MonoBehaviourPunCallbacks
     /// </summary>
     void Start()
     {
+        PhotonNetwork.OfflineMode = true;
         progressLabel.SetActive(false);
         controlPanel.SetActive(true);
         //Connect();
