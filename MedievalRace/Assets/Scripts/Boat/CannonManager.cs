@@ -29,13 +29,17 @@ public class CannonManager : MonoBehaviourPunCallbacks
     private LineRenderer lineRendererDownLeft;
     #endregion
 
-    #region Constrains
+    #region AngleConstrains
     [Tooltip("contr clockwise, from OX")]
     [SerializeField]
     private float maxFireAngle = 45;
     [Tooltip("contr clockwise, from OX")]
     [SerializeField]
     private float minAngle = - 45;
+    private Vector2 UR;
+    private Vector2 DR;
+    private Vector2 UL;
+    private Vector2 DL;
     #endregion
 
     public GameObject cannonballPref;
@@ -43,13 +47,27 @@ public class CannonManager : MonoBehaviourPunCallbacks
 
     void Start()
     {
-        ChangeTrajectory(Side.Right, Vector3.right);
+        CalcuateAngleConstrains();
         if (photonView.IsMine == false || PhotonNetwork.IsConnected == false)
         {
             return;
         }
         panAndZoom = PanAndZoom.instance;
         panAndZoom.onTap += Fire;
+        //panAndZoom.onStartTouch += 
+    }
+
+    public void CalcuateAngleConstrains()
+    {
+        UR = (Vector2)(Quaternion.Euler(0, 0, maxFireAngle) * Vector2.right);
+        DR = (Vector2)(Quaternion.Euler(0, 0, minAngle) * Vector2.right);
+        UL = (Vector2)(Quaternion.Euler(0, 0, 180 - maxFireAngle) * Vector2.right);
+        DL = (Vector2)(Quaternion.Euler(0, 0, 180 - minAngle) * Vector2.right);
+    }
+
+    private void Update()
+    {
+        ChangeTrajectory(Side.Right, Vector3.right);
     }
 
     public void Fire(Vector2 position)
@@ -111,10 +129,11 @@ public class CannonManager : MonoBehaviourPunCallbacks
     {
         Vector3[] upPositions = new Vector3[linePointCount];
         Vector3[] downPositions = new Vector3[linePointCount];
+        Quaternion quternionDirection = Quaternion.Euler(direction);
         for (int i = 0; i < linePointCount; i++)
         {
             upPositions[i] = up.gameObject.transform.position +
-                Quaternion.Euler(direction) * new Vector3(i, Mathf.Sin(i), 0f);
+                quternionDirection * new Vector3(i, Mathf.Sin(i), 0f);
         }
         up.positionCount = linePointCount;
         up.SetPositions(upPositions);
